@@ -4,16 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart,removeFromCart,decrementItem,clearCart } from "../../store/cartSlice";
 import type { Item } from "../../types/types";
 function Cart() {
-  const [showCheckout, setShowCheckout] = useState(false);
   const dispatch = useDispatch()
-
-  const cart = useSelector((state) => state.reducer.cart)
-  const cartValue = useSelector((state) => state.reducer.totalValue)
-
-  const handleCheckout = () => {
-    console.log("User proceeds to checkout");
-    setShowCheckout(true);
-  };
+  const cart = useSelector((state: any) => state.cart.cart);
+const cartValue = cart.reduce((total: number, item: Item) => {
+    return total + (item.price * item.stock);
+  }, 0);
 
   return (
     <div className="min-h-screen pt-20 px-4 md:px-10 bg-gray-50">
@@ -43,7 +38,7 @@ function Cart() {
                   <span className="font-semibold">{item.stock}</span>
 
                   <button
-                    onClick={() => addToCart(item)}
+                    onClick={()=> dispatch(addToCart(item))}
                     className="px-3 py-1 bg-gray-800 text-white rounded"
                   >
                     +
@@ -67,16 +62,10 @@ function Cart() {
             </h2>
             <div className="flex gap-3">
               <button
-                onClick={dispatch(clearCart)}
+                onClick={()=> dispatch(clearCart())}
                 className="px-6 py-2 bg-red-500 text-white rounded"
               >
                 Clear Cart
-              </button>
-              <button
-                onClick={handleCheckout}
-                className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded"
-              >
-                Checkout
               </button>
             </div>
           </div>

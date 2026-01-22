@@ -1,8 +1,10 @@
 import React, { useContext, useState } from "react";
 import { IoMenu, IoClose, IoSunny } from "react-icons/io5";
+import { useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 export default function Navbar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const cartItems = useSelector((state: any) => state.cart.cart);
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
@@ -12,7 +14,7 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
           <div className="flex justify-between h-full items-center">
             <span className="text-xl text-black font-bold">Assignment 1</span>
-            <div className="hidden md:flex space-x-6">
+            <div className="hidden md:flex space-x-6 items-center">
               <NavLink
                 to="/"
                 onClick={toggleSidebar}
@@ -52,19 +54,26 @@ export default function Navbar() {
               >
                 Shop
               </NavLink>
-              <NavLink
-                to="/cart"
-                onClick={toggleSidebar}
-                className={({ isActive }) =>
-                  [
-                    isActive
-                      ? "text-blue-500 font-medium "
-                      : "text-black font-medium ",
-                  ].join(" ")
-                }
-              >
-                Cart
-              </NavLink>
+                <NavLink
+                  to="/cart"
+                  onClick={toggleSidebar}
+                  className={({ isActive }) =>
+                    [
+                      isActive
+                        ? "text-blue-500 font-medium "
+                        : "text-black font-medium ",
+                    ].join(" ")
+                  }
+                >
+                  Cart
+                  <div className="flex items-center">
+                    {cartItems.length > 0 && (
+                    <span className="bg-red-500 text-white text-[10px] font-bold h-5 w-5 flex items-center justify-center rounded-full">
+                      {cartItems.length}
+                    </span>
+                  )}
+                  </div>
+                </NavLink>
             </div>
 
             <button
@@ -78,16 +87,14 @@ export default function Navbar() {
       </nav>
 
       <div
-        className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 md:hidden ${
-          isSidebarOpen ? "opacity-100 visible" : "opacity-0 invisible"
-        }`}
+        className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 md:hidden ${isSidebarOpen ? "opacity-100 visible" : "opacity-0 invisible"
+          }`}
         onClick={toggleSidebar}
       ></div>
 
       <div
-        className={`fixed top-0 right-0 h-full w-64 bg-white shadow-xl z-50 transform transition-transform duration-300 ease-in-out md:hidden sm:hidden ${
-          isSidebarOpen ? "translate-x-1" : "-translate-x-full"
-        }`}
+        className={`fixed top-0 right-0 h-full w-64 bg-white shadow-xl z-50 transform transition-transform duration-300 ease-in-out md:hidden sm:hidden ${isSidebarOpen ? "translate-x-1" : "-translate-x-full"
+          }`}
       >
         <div className="p-6 flex flex-col h-full">
           <div className="flex justify-between items-center mb-8">

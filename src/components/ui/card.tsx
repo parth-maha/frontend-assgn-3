@@ -1,20 +1,15 @@
 import React, { useContext } from "react";
 import { MdDelete } from "react-icons/md";
 import type { Item } from "../../types/types";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToCart } from "../../store/cartSlice";
 
 interface CardProps {
   item: Item;
-  onRemove: (item: Item) => void;
 }
 
-const Card: React.FC<CardProps> = ({ item, onRemove }) => {
+const Card: React.FC<CardProps> = ({ item }) => {
   const dispatch = useDispatch()
-  
-  function handleAddToCart (){
-    dispatch(addToCart(item))
-  }
 
   if (!item) {
     return <div className="text-center p-3">Out of Stock</div>;
@@ -53,7 +48,14 @@ const Card: React.FC<CardProps> = ({ item, onRemove }) => {
       <p className="text-gray-600 text-sm">{item.category.toUpperCase()}</p>
       <div className="mt-1">&nbsp;</div>
       <div className="flex gap-x-2 justify-around">
-        <button onClick={() => handleAddToCart} className="bg-blue-500 w-full text-white rounded-sm">
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dispatch(addToCart(item));
+          }}
+          className="mt-2 bg-blue-500 text-white px-3 py-1 rounded"
+        >
           Add to Cart
         </button>
       </div>
