@@ -6,12 +6,12 @@ const api = axios.create({
 });
 
 
-axios.interceptors.request.use(config => {
-  console.log(`[${config.method}] - ${config.url}`)
+api.interceptors.request.use(config => {
+  config.headers.Authorization = `Bearer ${"t1o2k3e4n5"}`
   return config;
 });
 
-axios.interceptors.response.use(
+api.interceptors.response.use(
   res => res,
   err => {
     if (err) {
