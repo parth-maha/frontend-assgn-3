@@ -92,6 +92,8 @@ export default function Navbar() {
         className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 md:hidden ${isSidebarOpen ? "opacity-100 visible" : "opacity-0 invisible"
           }`}
         onClick={toggleSidebar}
+        role="button"
+        
       ></div>
 
       <div
