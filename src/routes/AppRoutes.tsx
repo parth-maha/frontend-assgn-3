@@ -9,6 +9,7 @@ import ProductCard from "../components/ui/ProductCard";
 import Cart from "../components/ui/cart";
 import ErrorPage from "../components/ErrorPage";
 import NotFound from "../components/NotFound";
+import Loaders from "../components/ui/loaders";
 
 const router = createBrowserRouter([
   {

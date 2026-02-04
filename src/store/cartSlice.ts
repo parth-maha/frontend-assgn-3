@@ -15,6 +15,7 @@ const loadFromStorage = (): Item[] => {
     return [];
   }
 };
+
 const initialState : CartState = {
   cart: loadFromStorage(),
 };

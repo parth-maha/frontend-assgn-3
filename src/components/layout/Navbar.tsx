@@ -1,10 +1,12 @@
-import React, { useContext, useState } from "react";
-import { IoMenu, IoClose, IoSunny } from "react-icons/io5";
+import  {  useState } from "react";
+import { IoMenu, IoClose } from "react-icons/io5";
 import { useSelector } from "react-redux";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 export default function Navbar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  
   const cartItems = useSelector((state: any) => state.cart.cart);
+
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };

@@ -1,0 +1,1 @@
+- used useMemo to cache cart value in cart.tsx

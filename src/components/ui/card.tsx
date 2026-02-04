@@ -1,5 +1,3 @@
-import React, { useContext } from "react";
-import { MdDelete } from "react-icons/md";
 import type { Item } from "../../types/types";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../store/cartSlice";

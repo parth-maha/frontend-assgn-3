@@ -14,7 +14,7 @@ export const fetchProductById = async(id : number) =>{
     if(response.status === 200){
         return response.data;
     }
-
+    
     throw new Error(`Failed to Product : ${id}`)
 }
 

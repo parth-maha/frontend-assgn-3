@@ -13,6 +13,9 @@ const Dashboard = () => {
   const { data: products = [], isLoading, isError } = useQuery<Item[]>({
     queryKey: ["products"],
     queryFn: fetchProducts,
+    enabled : true,
+    retry : 2,
+    staleTime : 5 * 60 * 1000
   });
 
   const filteredProducts = products.filter(p => {
