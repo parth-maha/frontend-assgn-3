@@ -93,8 +93,9 @@ export default function Navbar() {
           }`}
         onClick={toggleSidebar}
         role="button"
-        
       ></div>
+
+      <div>Test</div>
 
       <div
         className={`fixed top-0 right-0 h-full w-64 bg-white shadow-xl z-50 transform transition-transform duration-300 ease-in-out md:hidden sm:hidden ${isSidebarOpen ? "translate-x-1" : "-translate-x-full"
